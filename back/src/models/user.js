@@ -8,6 +8,12 @@ const UserSchema = new mongoose.Schema({
     Email: {
         type: String,
         required: true,
+        validate: {
+            validator: function(v) {
+                return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v);
+            },
+            message: "Digite um e-mail válido."
+        },
         unique: true,
         lowercase: true
     },
